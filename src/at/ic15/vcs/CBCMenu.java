@@ -19,23 +19,43 @@ public abstract class CBCMenu<T> implements Menu {
 	private String description;
 
 	public CBCMenu(Class<T> currentClass) {
+		//get all public methods from class 
 		List<Method> methods = Arrays.asList(currentClass.getMethods());
+		//sort by name
 		Collections.sort(methods, (m1, m2) -> m1.getName().compareTo(m2.getName()));
+		//iterate all methods and add matching to the callable* lists
 		for (Method method : methods) {
-			Pattern p = Pattern.compile("MI_([0-9]+?)_(.*)");
-			Matcher m = p.matcher(method.getName());
-			if (!m.matches())
-				continue;
-
-			callableMethodDisplayNames.add(m.group(2));
+			// try to get name from method-annotation
+			String displayName = analyseMethodAnnotaions(method);
+			
+			// if no annotation 
+			if(displayName == null){
+				Pattern p = Pattern.compile("MI_([0-9]+?)(?:_(.*)){0,1}");
+				Matcher m = p.matcher(method.getName());
+				// filter matching methods
+				if (!m.matches())
+					continue;
+				
+				displayName = m.group(2);
+			}
+						
+			callableMethodDisplayNames.add(displayName);
 			callableMethods.add(method);
 		}
-
-		// analyseAnnotations(currentClass);
+		// gather name and description from class-annotation (if possible)
+		analyseClassAnnotations(currentClass);
 	}
 
-	@SuppressWarnings("unused")
-	private void analyseAnnotations(Class<T> currentClass) {
+	private String analyseMethodAnnotaions(Method method) {
+		Annotation annotation = method.getAnnotation(MenuItemDetails.class);
+		if (annotation instanceof MenuItemDetails) {
+			MenuItemDetails menuItemDetails = (MenuItemDetails) annotation;
+			return menuItemDetails.name();
+		}
+		return null;
+	}
+
+	private void analyseClassAnnotations(Class<T> currentClass) {
 		Annotation annotation = currentClass.getAnnotation(MenuDetails.class);
 		if (annotation instanceof MenuDetails) {
 			MenuDetails menuDetails = (MenuDetails) annotation;

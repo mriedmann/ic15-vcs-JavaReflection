@@ -2,50 +2,44 @@ package at.ic15.vcs;
 
 import java.io.PrintStream;
 
-/* A
- * @MenuDetails(name = "DE R", description = "This menu is in german and uses reflection")
- */
+@MenuDetails(name = "DE R", description = "This menu is in german and uses reflection")
 
 public class MenuGermanRefl extends CBCMenu<MenuGermanRefl> implements Menu {
 	public MenuGermanRefl() {
 		super(MenuGermanRefl.class);
 	}
 
-	@Override
-	public String GetName() {
-		return "DE R";
-	}
-
-	@Override
-	public String GetDescription() {
-		return "This menu is in German and uses reflection";
-	}
-
-	public Menu.CallResult MI_0_Zurück(PrintStream out) {
+	@MenuItemDetails(name="<< Zurück")
+	public Menu.CallResult MI_0(PrintStream out) {
 		return Menu.CallResult.Back;
 	}
 
-	public Menu.CallResult MI_1_Eins(PrintStream out) {
+	@MenuItemDetails(name="Eins ausgaben")
+	public Menu.CallResult MI_1(PrintStream out) {
 		out.println("Du hast 1 ausgewählt");
 		return Menu.CallResult.Again;
 	}
 
-	public Menu.CallResult MI_2_Zwei(PrintStream out) {
+	@MenuItemDetails(name="Zwei ausgaben")
+	public Menu.CallResult MI_2(PrintStream out) {
 		out.println("Du hast 2 ausgewählt");
 		return Menu.CallResult.Again;
 	}
 
-	public Menu.CallResult MI_3_Drei(PrintStream out) {
+	@MenuItemDetails(name="Drei ausgaben")
+	public Menu.CallResult MI_3(PrintStream out) {
 		out.println("Du hast 3 ausgewählt");
 		return Menu.CallResult.Again;
 	}
 
-	public Menu.CallResult MI_4_Vier(PrintStream out) {
+	@MenuItemDetails(name="Vier ausgaben")
+	public Menu.CallResult MI_4(PrintStream out) {
 		out.println("Du hast 4 ausgewählt");
 		return Menu.CallResult.Again;
 	}
 
-	public Menu.CallResult MI_5_Fünf(PrintStream out) {
+	@MenuItemDetails(name="Fünf ausgaben")
+	public Menu.CallResult MI_5(PrintStream out) {
 		out.println("Du hast 5 ausgewählt");
 		return Menu.CallResult.Again;
 	}

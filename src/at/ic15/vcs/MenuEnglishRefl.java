@@ -2,9 +2,6 @@ package at.ic15.vcs;
 
 import java.io.PrintStream;
 
-/* A
- * @MenuDetails(name = "EN R", description = "This menu is in English and uses reflection")
- */
 public class MenuEnglishRefl extends CBCMenu<MenuEnglishRefl> implements Menu {
 	public MenuEnglishRefl() {
 		super(MenuEnglishRefl.class);
