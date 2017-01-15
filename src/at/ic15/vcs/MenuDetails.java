@@ -10,5 +10,6 @@ import java.lang.annotation.ElementType;
 
 public @interface MenuDetails {
 	public String name();
+
 	public String description();
 }

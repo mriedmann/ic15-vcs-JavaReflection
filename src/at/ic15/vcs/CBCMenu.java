@@ -31,7 +31,7 @@ public abstract class CBCMenu<T> implements Menu {
 			callableMethods.add(method);
 		}
 
-		//analyseAnnotations(currentClass);
+		// analyseAnnotations(currentClass);
 	}
 
 	@SuppressWarnings("unused")
