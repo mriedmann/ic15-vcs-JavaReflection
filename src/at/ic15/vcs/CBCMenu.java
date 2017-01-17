@@ -20,7 +20,7 @@ public abstract class CBCMenu<T> implements Menu {
 
 	public CBCMenu(Class<T> currentClass) {
 		//get all public methods from class 
-		List<Method> methods = Arrays.asList(currentClass.getMethods());
+		List<Method> methods = Arrays.asList(currentClass.getDeclaredMethods());
 		//sort by name
 		Collections.sort(methods, (m1, m2) -> m1.getName().compareTo(m2.getName()));
 		//iterate all methods and add matching to the callable* lists

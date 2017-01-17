@@ -40,8 +40,9 @@ public class MenuEnglishRefl extends CBCMenu<MenuEnglishRefl> implements Menu {
 		out.println("You selected 4");
 		return Menu.CallResult.Again;
 	}
-
-	public Menu.CallResult MI_5_Five(PrintStream out) {
+	
+	@SuppressWarnings("unused")
+	private Menu.CallResult MI_5_Five(PrintStream out) {
 		out.println("You selected 5");
 		return Menu.CallResult.Again;
 	}
